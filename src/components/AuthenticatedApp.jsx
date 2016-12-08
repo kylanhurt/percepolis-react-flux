@@ -32,14 +32,28 @@ export default class AuthenticatedApp extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <nav className="navbar navbar-default">
-          <div className="navbar-header">
-            <a className="navbar-brand" href="/">React Flux app with JWT authentication</a>
-          </div>
-          {this.headerItems}
+        <div className="row" style={{clear: "both"}}>
+          <nav className="navbar navbar-inverse navbar-fixed-top" >
+              <div className="container">
+                  <div className="navbar-header">
+                      <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                          <span className="sr-only">Toggle navigation</span>
+                      </button>
+                      <a className="navbar-brand" href="#">Percepol.is</a>
+                  </div>
+                  <ul className="nav navbar-nav navbar-right">                         
+                  {this.headerItems}
+                  </ul>
+                </div>
         </nav>
         <RouteHandler/>
+
+        <div className="container col-lg-6 col-lg-offset-3">
+          <footer>
+              <p>&copy; Percepol.is 2016</p>
+          </footer>
+        </div>
+
       </div>
     );
   }
@@ -52,27 +66,20 @@ export default class AuthenticatedApp extends React.Component {
   get headerItems() {
     if (!this.state.userLoggedIn) {
       return (
-      <ul className="nav navbar-nav navbar-right">
-        <li>
-          <Link to="login">Login</Link>
-        </li>
-        <li>
-          <Link to="signup">Signup</Link>
-        </li>
-      </ul>)
+              <form className="navbar-form navbar-right">     
+                  <div className="form-group">
+                      <input type="email" className="form-control" id="login-email" />
+                  </div>
+                  <div className="form-group">
+                      <input type="password" className="form-control" id="login-password" />
+                  </div>
+                  <button type="submit" className="btn btn-success">Login</button>
+              </form>
+            )
     } else {
       return (
-      <ul className="nav navbar-nav navbar-right">
-        <li>
-          <Link to="home">Home</Link>
-        </li>
-        <li>
-          <Link to="quote">Quote</Link>
-        </li>
-        <li>
-          <a href="" onClick={this.logout}>Logout</a>
-        </li>
-      </ul>)
+          <li><a href="#" onClick="logout()" style="color:white;">Logout</a></li>
+      )
     }
   }
 }
