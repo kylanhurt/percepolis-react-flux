@@ -39,11 +39,9 @@ export default class AuthenticatedApp extends React.Component {
                       <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                           <span className="sr-only">Toggle navigation</span>
                       </button>
-                      <a className="navbar-brand" href="#">Percepol.is</a>
-                  </div>
-                  <ul className="nav navbar-nav navbar-right">                         
+                      <a className="navbar-brand" href="/">Percepol.is</a>
+                  </div>                       
                   {this.headerItems}
-                  </ul>
                 </div>
         </nav>
         <div className="col-lg-8 offset-2 main-content">
@@ -67,19 +65,20 @@ export default class AuthenticatedApp extends React.Component {
   get headerItems() {
     if (!this.state.userLoggedIn) {
       return (
-              <form className="navbar-form navbar-right">     
-                  <div className="form-group">
-                      <input type="email" className="form-control" id="login-email" />
-                  </div>
-                  <div className="form-group">
-                      <input type="password" className="form-control" id="login-password" />
-                  </div>
-                  <button type="submit" className="btn btn-success">Login</button>
-              </form>
+            <ul className="nav navbar-nav navbar-right"> 
+              <li className="nav-item">
+                <a className="nav-link" href="#/signup">Sign Up</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#/login">Login</a>
+              </li>         
+            </ul>     
             )
     } else {
       return (
-          <li><a href="#" onClick="logout()" style="color:white;">Logout</a></li>
+          <ul className="nav navbar-nav navbar-right">         
+            <li><a href="#" onClick="logout()" style="color:white;">Logout</a></li>
+          </ul>
       )
     }
   }
