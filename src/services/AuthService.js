@@ -6,7 +6,6 @@ import LoginActions from '../actions/LoginActions';
 class AuthService {
 
   login(email, password) {
-    console.log('AuthService.login starting');
     return this.handleAuth(when(request({
       url: LOGIN_URL,
       method: 'POST',
@@ -24,21 +23,19 @@ class AuthService {
     LoginActions.logoutUser();
   }
 
-  signup(email, password, extra) {
-    console.log('authService.signup starting');
+  signup(email, password) {
     return this.handleAuth(when(request({
       url: SIGNUP_URL,
       method: 'POST',
       crossOrigin: true,
       type: 'json',
       data: {
-        email, password, extra
+        email, password
       }
     })));
   }
 
   handleAuth(loginPromise) {
-    console.log('AuthService.handleAuth starting');
     return loginPromise
       .then(function(response) {
         var jwt = response.token;

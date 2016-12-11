@@ -39,6 +39,9 @@ footer {
 #edit button {
   margin-top: 10px;
 }
+.jumbotron.signup {
+  overflow: auto;
+}
 .jumbotron form button {
   margin-right: 5px;
 }

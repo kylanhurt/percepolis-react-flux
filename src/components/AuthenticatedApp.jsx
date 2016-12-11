@@ -77,7 +77,7 @@ export default class AuthenticatedApp extends React.Component {
     } else {
       return (
           <ul className="nav navbar-nav navbar-right">         
-            <li><a href="#" onClick="logout()" style="color:white;">Logout</a></li>
+            <li><a href="#" onClick={this.logout.bind(this)} style={{color:'white'}}>Logout</a></li>
           </ul>
       )
     }
