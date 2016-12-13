@@ -7,21 +7,34 @@ export default class EntityTable extends React.Component {
 	constructor( props ) {
 		console.log('inside EntityTable constructor');
 		super(props)
-		//this.state = EntityTableStore.getEntities();
-		EntityTableActions.loadEntities();
+	}
+
+	componentWillReceiveProps(props) {
+		console.log('ET.componentWillReceiveProps triggered');
+		this.setState({
+			entities: EntityTableActions.receiveEntities()
+		});
+	}
+
+	componentWillMount() {
+		console.log('ET.componentWillMount triggered');
+		EntityTableActions.loadEntities();		
 	}
 
 	componentDidMount(){
+		console.log('ET.componentDidMount triggered');
 		this.init()
 
 	}
 
 	componentWillUnmount() {
+		console.log('ET.componentWillUnmount triggered');
 		EntityTableStore.removeChangeListener(this._onChange);
 	}
 
 	_onChange() {
-		this.setState(EntityTableStore.getEntities());
+		console.log('ET._onChange triggered');
+		//this.setState(EntityTableStore.getEntities());
 	}
 
 	init(){

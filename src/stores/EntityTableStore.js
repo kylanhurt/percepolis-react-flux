@@ -3,7 +3,7 @@
 // Requiring the Dispatcher, Constants, and
 // event emitter dependencies
 var AppDispatcher = require('../dispatchers/AppDispatcher');
-import { LOAD_ENTITIES } from '../constants/EntityTableConstants';
+import { LOAD_ENTITIES, RECEIVE_ENTITIES } from '../constants/EntityTableConstants';
 var ObjectAssign = require('object-assign');
 var EventEmitter = require('events').EventEmitter;
 import BaseStore from './BaseStore';
@@ -37,7 +37,10 @@ class EntityTableStore extends BaseStore {
         this._order = action.order;
         this.emitChange();
         break;
-
+      case RECEIVE_ENTITIES:
+        console.log('case is RECEIVE_ENTITIES, entities are:', entities);
+        this.props.entities = action.entities;
+        break;
       default:
         break;
     };
