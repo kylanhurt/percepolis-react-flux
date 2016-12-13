@@ -15,7 +15,7 @@ export default {
   		order: order
   	}
   	console.log('within EntityTableActions and data is: ', data);
-    AppDispatcher.handleViewAction({
+    AppDispatcher.dispatch({
       actionType: LOAD_ENTITIES,
       data: data
     });

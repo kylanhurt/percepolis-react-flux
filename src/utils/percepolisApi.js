@@ -1,4 +1,4 @@
-import { loadEntities } from '../actions/EntityTableServerActions';
+import { receiveEntities } from '../actions/EntityTableServerActions';
 import request from 'superagent';
 
 export default {
@@ -9,8 +9,8 @@ export default {
       .set('Accept', 'application/json')
       .end(function(err, response) {
         if (err) return console.error(err);
-
-        EntityTableServerActions.loadEntities(response.body);
+        
+        receiveEntities(response.body);
       });
   }
 };
