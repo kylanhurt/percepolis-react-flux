@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom'
 import Router, {Route} from 'react-router';
 import AuthenticatedApp from './components/AuthenticatedApp'
 import Login from './components/Login';
@@ -7,6 +8,7 @@ import Home from './components/Home';
 import Quote from './components/Quote';
 import RouterContainer from './services/RouterContainer';
 import LoginActions from './actions/LoginActions';
+
 
 var routes = (
   <Route handler={AuthenticatedApp}>
@@ -26,6 +28,6 @@ if (jwt) {
 }
 
 router.run(function (Handler) {
-  React.render(<Handler />, document.getElementById('content'));
+  ReactDOM.render(<Handler />, document.getElementById('content'));
 });
 

@@ -1,5 +1,5 @@
 var BASE_URL = 'http://localhost/';
-export default {
+module.exports = {
   BASE_URL: BASE_URL,
   LOGIN_URL: BASE_URL + 'api/authenticate',
   SIGNUP_URL: BASE_URL + 'api/user/register',

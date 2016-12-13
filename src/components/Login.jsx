@@ -1,6 +1,7 @@
-import React from 'react/addons';
+import React from 'react';
 import ReactMixin from 'react-mixin';
-import Auth from '../services/AuthService'
+import Auth from '../services/AuthService';
+import linkState from 'react-link-state';
 
 export default class Login extends React.Component {
 
@@ -27,11 +28,11 @@ export default class Login extends React.Component {
         <form role="form">
         <div className="form-group">
           <label htmlFor="username">Username</label>
-          <input type="text" valueLink={this.linkState('user')} className="form-control" id="username" placeholder="Username" />
+          <input type="text" valueLink={linkState(this,'user')} className="form-control" id="username" placeholder="Username" />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input type="password" valueLink={this.linkState('password')} className="form-control" id="password" ref="password" placeholder="Password" />
+          <input type="password" valueLink={linkState(this, 'password')} className="form-control" id="password" ref="password" placeholder="Password" />
         </div>
         <button type="submit" className="btn btn-default" onClick={this.login.bind(this)}>Submit</button>
       </form>
@@ -39,5 +40,3 @@ export default class Login extends React.Component {
     );
   }
 }
-
-ReactMixin(Login.prototype, React.addons.LinkedStateMixin);
