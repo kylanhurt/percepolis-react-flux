@@ -7,10 +7,11 @@ export default class EntityTable extends React.Component {
 	constructor( props ) {
 		console.log('inside EntityTable constructor');
 		super(props)
-	     this.state = {
-	         entities: [],
-	         start: "started"
-	     }
+	   this.state = {
+	       entities: [],
+	       start: "started"
+	   };
+		this._onChange = this._onChange.bind(this);  	     
 	}
 
    componentWillReceiveProps(props) {
@@ -39,16 +40,7 @@ export default class EntityTable extends React.Component {
      var test = EntityTableStore.getEntities();
      console.log('test is:', test);
      this.state.entities = EntityTableStore.getEntities();
-
-	}
-
-	init(){
-		/*getEntityIndex('created_at', 10, 'desc')
-		.then(data => {
-			console.log('inside of home-table init -> then', 'data.data: ', data.data);
-			this.setState({entities: data.data});     
-			console.log('this is now: ', this);			
-		})*/
+     console.log('end of _onChange, this is:', this);
 	}
 
   render() { 
