@@ -40,7 +40,7 @@ export default class EntityTable extends React.Component {
      var test = EntityTableStore.getEntities();
      console.log('test is:', test);
      this.state.entities = EntityTableStore.getEntities();
-     console.log('end of _onChange, this is:', this);
+     this.setState({entities: this.state.entities});
 	}
 
   render() { 
@@ -57,7 +57,15 @@ export default class EntityTable extends React.Component {
 		            </tr>
 		        </thead>
 		        <tbody>
-
+            	{this.state.entities.map((entity, index) => (
+          		<tr key={index}>
+	                <td className="home-index-table-body-title"><a>{entity.title}</a></td>
+	                <td className="home-index-table-body-website"><a href="http://{entity.website}">{entity.website}</a></td>                        
+	                <td className="home-index-table-body-location">{entity.location}</td>
+	                <td className="home-index-table-body-year">{entity.year_founded}</td>
+	                <td className="home-index-table-body-created">{entity.created_at}</td>
+                </tr>
+          		))}
 		        </tbody>
 		    </table>
 		 </div>	
