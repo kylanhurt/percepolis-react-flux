@@ -5,7 +5,6 @@ import AuthenticatedApp from './components/AuthenticatedApp'
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
-import Quote from './components/Quote';
 import RouterContainer from './services/RouterContainer';
 import LoginActions from './actions/LoginActions';
 
@@ -15,7 +14,6 @@ var routes = (
     <Route name="login" handler={Login}/>
     <Route name="signup" handler={Signup}/>
     <Route name="home" path="/" handler={Home}/>
-    <Route name="quote" handler={Quote}/>
   </Route>
 );
 

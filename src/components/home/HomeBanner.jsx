@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginStore from '../../stores/LoginStore'
 import AuthService from '../../services/AuthService'
+import {Link} from 'react-router';
 
 export default class HomeBanner extends React.Component {
 
@@ -66,7 +67,7 @@ export default class HomeBanner extends React.Component {
 				<div id="home-logged-in-content" className="jumbotron">
 				    <h1>Welcome to dataGo<span>, </span>!</h1>
 				    <p>To submit a new entity to our database, please click the button below...</p>
-				    <p><a className="btn btn-primary btn-large">Submit New Entity</a></p>
+				    <p><Link className="btn btn-primary btn-large" to="/entity/new">Submit New Entity</Link></p>
 				</div>
 			)
 		}

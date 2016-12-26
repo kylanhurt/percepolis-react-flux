@@ -12,8 +12,8 @@ export default {
 
     if (savedJwt !== jwt) {      
       var nextPath = RouterContainer.get().getCurrentQuery().nextPath || '/';
+      localStorage.setItem('jwt', jwt);      
       RouterContainer.get().transitionTo(nextPath);
-      localStorage.setItem('jwt', jwt);
     }
   },
   logoutUser: () => {
