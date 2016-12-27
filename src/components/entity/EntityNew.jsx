@@ -6,8 +6,13 @@ export default class EntityNew extends React.Component {
 	constructor( props ) {
 		console.log('inside EntityNew constructor');
 		super(props)
-	   this.state = {
-	       entityNew: {}
+	    this.state = {
+	       entityNew: {},
+           canSubmit: false,
+           canPreSubmit: false,
+           preSubmitData: {
+           		valid: false
+           }
 	   };
 	}
 
@@ -16,11 +21,55 @@ export default class EntityNew extends React.Component {
 	}
 
 	submitNewEntity(){
-		
+
+	}
+
+    enablePreSubmitButton() {
+      this.setState({
+        canPreSubmit: true
+      });
+    }
+
+    disablePreSubmitButton() {
+      this.setState({
+        canPreSubmit: false
+      });
+    }
+
+    enableSubmitButton() {
+      this.setState({
+        canSubmit: true
+      });
+    }
+
+    disableSubmitButton() {
+      this.setState({
+        canSubmit: false
+      });
+    }    
+
+    submit(model) {
+      someDep.saveEmail(model.email);
+    }
+
+   componentWillMount() {
+         
+    }
+
+
+	componentDidMount(){
+
+	}
+
+	componentWillUnmount() {
+
+	}
+
+	_onChange() {
+
 	}
 
 	render() {
-
 		return(
 			<div className="main-form" style={{clear: "both"}}>
 			    <h2>Entity Submission</h2>
@@ -31,16 +80,16 @@ export default class EntityNew extends React.Component {
 			                <label htmlFor="entityName">Entity Name:</label>
 			                <input className="form-control" name="entityName" placeholder="eg. McDonald's" required></input>
 			                <div className="form-messages-wrap">
-			                    <div>
+			                    <div className={(!this.state.preSubmitData.valid ? 'hidden' : '')}>
 			                        <span className="help-block"></span><br></br>
 			                        <label className="text-danger">This field is required</label>
 			                    </div>
 			                </div>
 			            </div>
-				        <button type="submit" className="btn btn-success" onClick={this.submitNewEntity()}>Submit New Entity</button>            
-				        <button type="submit" className="btn btn-info" to="">Skip this Step</button>
+				        <button type="submit" className="btn btn-success" onClick={this.submitNewEntity()} disabled={this.state.canPreSubmit ? '' : 'disabled'}>Submit New Entity</button>            
+				        <button type="submit" className={"btn btn-info " + (this.state.canSubmit ? '' : 'hidden')} to="">Skip this Step</button>
 			        </div>
-			        {!this.state.entityNew.preApproved ? (
+			        {this.state.entityNew.preApproved ? (
 		        	<div>
 				        <div className="subsequent-entity-info-submission">
 				            <h2>Additional Info:</h2>
