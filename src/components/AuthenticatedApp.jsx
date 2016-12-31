@@ -45,7 +45,7 @@ export default class AuthenticatedApp extends React.Component {
                 </div>
         </nav>
         <div className="col-lg-8 offset-2 main-content">
-          <RouteHandler/>
+          {this.props.children}
         </div>
         <div className="container col-lg-8 col-lg-offset-2">
           <footer>
