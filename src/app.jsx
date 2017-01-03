@@ -21,9 +21,8 @@ ReactDOM.render((
 			    	<IndexRoute component={Home} />
 				    <Route path="/login" component={Login} />
 				    <Route path="/signup" component={Signup} />
-				    <Route path="/entity/new" component={EntityNew} />
-
+				    <Route path="/entity/new" component={EntityFormsy} />
 			    </Route>
-				    <Route path="/entity/formsy" component={EntityFormsy} />			    
+		    
 			</Router>
 ), document.getElementById('content'))

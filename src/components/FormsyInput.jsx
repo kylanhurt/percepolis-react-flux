@@ -11,6 +11,60 @@ const FormsyInput = React.createClass({
   changeValue(event) {
     this.setValue(event.currentTarget[this.props.type === 'checkbox' ? 'checked' : 'value']);
   },
+
+  saveEntityInfo() {
+
+  },
+
+  submitNewEntity(){
+
+  },
+
+  enablePreSubmitButton() {
+    this.setState({
+      canPreSubmit: true
+    });
+  },
+
+  disablePreSubmitButton() {
+    this.setState({
+      canPreSubmit: false
+    });
+  },
+
+  enableSubmitButton() {
+    this.setState({
+      canSubmit: true
+    });
+  },
+
+  disableSubmitButton() {
+    this.setState({
+      canSubmit: false
+    });
+  },
+
+  submit(model) {
+    someDep.saveEmail(model.email);
+  },
+
+ componentWillMount() {
+       
+  },
+
+
+  componentDidMount(){
+
+  },
+
+  componentWillUnmount() {
+
+  },
+
+  _onChange() {
+
+  },
+
   render() {
 
     // Set a specific className based on the validation
