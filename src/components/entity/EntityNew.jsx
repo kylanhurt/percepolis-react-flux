@@ -1,4 +1,5 @@
 import React from 'react';
+import EntityFormsy from './EntityFormsy';
 //import EntityNewStore from '../../stores/EntityNewStore';
 //import EntityNewActions from '../../actions/EntityNewActions';
 
@@ -150,6 +151,7 @@ export default class EntityNew extends React.Component {
 			        	<div></div>
 			        )}
 			    </form>
+			    <EntityFormsy />
 			</div>			
 		)
 	}
