@@ -1,6 +1,9 @@
-import React, { Component } from 'react'
-import Formsy, {Form} from 'formsy-react'
-import FormsyInput from '../FormsyInput'
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import FRC from 'formsy-react-components';
+import FormsyInput from '../FormsyInput';
+
+const { Form, Input, File, RadioGroup, Checkbox, CheckboxGroup, Select } = FRC;
 
 export default class EntityFormsy extends React.Component {
   constructor( props ) {
@@ -67,7 +70,14 @@ export default class EntityFormsy extends React.Component {
 
 
   componentDidMount(){
-
+    /* eslint-disable no-console */
+    console.info(this.inputRef.element);
+    console.info(this.fileRef.element);
+    console.info(this.radiosRef.elements);
+    console.info(this.checkboxRef.element);
+    console.info(this.checkboxesRef.elements);
+    console.info(this.selectRef.element);
+    /* eslint-enable no-console */    
   }
 
   componentWillUnmount() {
@@ -80,12 +90,12 @@ export default class EntityFormsy extends React.Component {
 
   render() {
     return (
-      <div className="main-form" style={{clear: "both"}}>
+      <div className="entity-new-form-wrapper" style={{clear: "both"}}>
         <h2>Entity Submission</h2>
         <p>To start the creation and submission of a new entity, please fill out the form below:</p>
-        <Formsy.Form onSubmit={this.submit} onValid={this.enableSubmitButton} onInvalid={this.disableSubmitButton} className="main-form" style={{clear: "both"}}>
-          <label htmlFor="entityName">Entity Name:</label>
-          <FormsyInput name="entityName" type="text" validations="isAlphanumeric" validationError="Entity names should contain only alphanumeric characters." className="form-control " required/>
+        <Formsy.Form onSubmit={this.submit} onValid={this.enableSubmitButton} onInvalid={this.disableSubmitButton} style={{clear: "both"}}>
+          <Input label="Entity Name:" rowClassName="col-lg-9" labelClassName="col-lg-3" name="entityName" type="text" placeholder="ex. McDonalds" help="This is a required text input." componentRef={(component) => {this.inputRef = component;}} required/>
+          <div className="clearfix"></div>
           <button type="submit" className="btn btn-success" onClick={this.submitNewEntity()} disabled={this.state.canPreSubmit ? ' ' : 'disabled'}>Submit New Entity</button>            
           <button type="submit" className={"btn btn-info " + (this.state.canSubmit ? '' : 'hidden')} to="">Skip this Step</button>       
 
