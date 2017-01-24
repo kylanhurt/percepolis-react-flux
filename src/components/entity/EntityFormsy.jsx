@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import FRC from 'formsy-react-components';
-import FormsyInput from '../FormsyInput';
+
 
 const { Form, Input, File, RadioGroup, Checkbox, CheckboxGroup, Select } = FRC;
 
@@ -70,14 +70,7 @@ export default class EntityFormsy extends React.Component {
 
 
   componentDidMount(){
-    /* eslint-disable no-console */
-    console.info(this.inputRef.element);
-    console.info(this.fileRef.element);
-    console.info(this.radiosRef.elements);
-    console.info(this.checkboxRef.element);
-    console.info(this.checkboxesRef.elements);
-    console.info(this.selectRef.element);
-    /* eslint-enable no-console */    
+ 
   }
 
   componentWillUnmount() {
@@ -94,11 +87,13 @@ export default class EntityFormsy extends React.Component {
         <h2>Entity Submission</h2>
         <p>To start the creation and submission of a new entity, please fill out the form below:</p>
         <Formsy.Form onSubmit={this.submit} onValid={this.enableSubmitButton} onInvalid={this.disableSubmitButton} style={{clear: "both"}}>
-          <Input label="Entity Name:" rowClassName="col-lg-9" labelClassName="col-lg-3" name="entityName" type="text" placeholder="ex. McDonalds" help="This is a required text input." componentRef={(component) => {this.inputRef = component;}} required/>
-          <div className="clearfix"></div>
-          <button type="submit" className="btn btn-success" onClick={this.submitNewEntity()} disabled={this.state.canPreSubmit ? ' ' : 'disabled'}>Submit New Entity</button>            
-          <button type="submit" className={"btn btn-info " + (this.state.canSubmit ? '' : 'hidden')} to="">Skip this Step</button>       
-
+           <fieldset>
+            <Input label="Entity Name:" layoutChoice="elementOnly" rowClassName="col-lg-9" labelClassName="col-lg-3" name="entityName" type="text" placeholder="ex. McDonalds" help="This is a required text input." componentRef={(component) => {this.inputRef = component;}} required/>
+            <div className="clearfix"></div>
+            <Input name="presubmit-hidden" value="true" type="hidden" />
+            <input type="submit" className="btn btn-success" onClick={this.submitNewEntity()} disabled={this.state.canPreSubmit ? ' ' : 'disabled'} defaultValue="Submit New Entity" />
+            <input type="skip" className={"btn btn-info " + (this.state.canSubmit ? '' : 'hidden')} to="" defaultValue="Skip this Step" />
+          </fieldset>
           {this.state.entityNew.preApproved ? (
           <div>
             <div className="subsequent-entity-info-submission">
