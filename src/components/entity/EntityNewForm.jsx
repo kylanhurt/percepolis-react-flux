@@ -16,11 +16,7 @@ export default class EntityFormsy extends React.Component {
     this.disableSubmitButton = this.disableSubmitButton.bind(this);       
     this.submitNewEntity = this.submitNewEntity.bind(this);     
     this.state = {
-     entityNew: {
-        entityName: {
-          errors: false
-        }
-       },
+     entityNew: {},
        canSubmit: false,
        canPreSubmit: false,
        preSubmitData: {
@@ -82,7 +78,9 @@ export default class EntityFormsy extends React.Component {
   }
 
   changeEntityName(event) {
-    console.log('event.target.value is:', event.target.value);
+    console.log('event.target is:', event.target);
+    console.log('this is:', this);
+    console.log('this.state is:', this.state);
   }
 
   _onChange() {
@@ -97,20 +95,25 @@ export default class EntityFormsy extends React.Component {
       <div className="entity-new-form-wrapper" style={{clear: "both"}}>
         <h2>Entity Submission</h2>
         <p>To start the creation and submission of a new entity, please fill out the form below:</p>
-        <form className="main-form" onSubmit={this.submit} onValid={this.enableSubmitButton} onInvalid={this.disableSubmitButton} style={{clear: "both"}} ref="newEntitySubmit">
-           <fieldset className="form-group">
-            <label htmlFor="entityName">Entity Name:</label>
-            <input label="Entity Name:" className="form-control" onChange={this.changeEntityName} name="entityName" type="text" placeholder="ex. McDonalds" required/>
-            <div className="form-messages-wrap">
-              {this.state.entityNew.entityName.errors ? (
-                <div className="entityNameErrors">
-                  <label class="text-danger">>This field is required.</label>
-                </div>
-              ) : <div></div>}
-            </div>
+        <form onSubmit={this.submit} onValid={this.enableSubmitButton} onInvalid={this.disableSubmitButton} style={{clear: "both"}} ref="newEntitySubmit">
+           <fieldset>
+            <input label="Entity Name:" 
+              min={1} 
+              max={300} 
+              layoutChoice="elementOnly" 
+              rowClassName="col-lg-9" 
+              onChange={this.changeEntityName} 
+              labelClassName="col-lg-3" 
+              name="entityName" 
+              type="text" 
+              placeholder="ex. McDonalds" 
+              help="This is a required text input." 
+              value={this.props.entityName}
+              required/>
+            <div className="clearfix"></div>
             <input name="presubmit-hidden" value="true" type="hidden" />
-            <button type="submit" className="btn btn-success" onClick={this.submitNewEntity()} disabled={this.state.canPreSubmit ? ' ' : 'disabled'}>Submit New Entity</button>
-            <button type="skip" className={"btn btn-info " + (this.state.canSubmit ? '' : 'hidden')}>Skip this Step</button>
+            <input type="submit" className="btn btn-success" onClick={this.submitNewEntity()} disabled={this.state.canPreSubmit ? ' ' : 'disabled'} defaultValue="Submit New Entity" />
+            <input type="skip" className={"btn btn-info " + (this.state.canSubmit ? '' : 'hidden')} to="" defaultValue="Skip this Step" />
           </fieldset>
           {this.state.entityNew.preApproved ? (
           <div>
