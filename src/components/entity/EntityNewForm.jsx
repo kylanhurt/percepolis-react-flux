@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import FRC from 'formsy-react-components';
+import EntityService from '../../services/EntityService';
 
 
 //const { Form, Input, File, RadioGroup, Checkbox, CheckboxGroup, Select } = FRC;
@@ -37,10 +38,6 @@ export default class EntityFormsy extends React.Component {
   }
 
   saveEntityInfo() {
-
-  }
-
-  submitNewEntity(){
 
   }
 
@@ -90,7 +87,13 @@ export default class EntityFormsy extends React.Component {
     }
   }
 
+  submitNewEntity(){
+    console.log('in submitNewEntity fxn within EntityNewForm.jsx', 'this is:', this);
+    EntityService.create('email@email.com', 'sample entity')
+  }
+
   render() {
+    console.log('in EntityNewForm')
     return (
       <div className="entity-new-form-wrapper" style={{clear: "both"}}>
         <h2>Entity Submission</h2>

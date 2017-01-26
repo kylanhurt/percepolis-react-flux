@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import FRC from 'formsy-react-components';
+import EntityService from '../../services/EntityService';
 
 
 //const { Form, Input, File, RadioGroup, Checkbox, CheckboxGroup, Select } = FRC;
@@ -14,7 +15,8 @@ export default class EntityFormsy extends React.Component {
     this.disablePreSubmitButton = this.disablePreSubmitButton.bind(this);   
     this.enableSubmitButton = this.enableSubmitButton.bind(this);
     this.disableSubmitButton = this.disableSubmitButton.bind(this);       
-    this.submitNewEntity = this.submitNewEntity.bind(this);     
+    this.submitNewEntity = this.submitNewEntity.bind(this);    
+    this.preSubmitNewEntity = this.preSubmitNewEntity.bind(this); 
     this.state = {
      entityNew: {
         entityName: {
@@ -83,24 +85,41 @@ export default class EntityFormsy extends React.Component {
 
   changeEntityName(event) {
     console.log('event.target.value is:', event.target.value);
+    console.log('this is:', this);
+    console.log('this.state is:', this.state);
+
+    var currentValue = event.target.value;
+    console.log('_onChange this is: ', this, 'currentValue is:', currentValue);
+
+    if(currentValue !== '') {
+      console.log('currentValue conditional true')
+      this.setState({ canPreSubmit: true});
+    } else {
+      console.log('currentValue conditional false')
+      this.setState({ canPreSubmit: false });
+    }
+
   }
 
   _onChange() {
-    if(this.entityName !== '') {
-      console.log('_onChange this is: ', this);
-      this.state.canPreSubmit = true;
-    }
+
+  }
+
+  preSubmitNewEntity(){
+    console.log('in submitNewEntity fxn within EntityNewForm.jsx', 'this is:', this);
+    EntityService.create('email@email.com', 'sample entity')
   }
 
   render() {
+    console.log('in EntityFormsy')
     return (
       <div className="entity-new-form-wrapper" style={{clear: "both"}}>
         <h2>Entity Submission</h2>
         <p>To start the creation and submission of a new entity, please fill out the form below:</p>
-        <form className="main-form" onSubmit={this.submit} onValid={this.enableSubmitButton} onInvalid={this.disableSubmitButton} style={{clear: "both"}} ref="newEntitySubmit">
+        <form className="main-form" style={{clear: "both"}} ref="newEntitySubmit">
            <fieldset className="form-group">
             <label htmlFor="entityName">Entity Name:</label>
-            <input label="Entity Name:" className="form-control" onChange={this.changeEntityName} name="entityName" type="text" placeholder="ex. McDonalds" required/>
+            <input label="Entity Name:" className="form-control" onChange={this.changeEntityName.bind(this)} name="entityName" type="text" placeholder="ex. McDonalds" required/>
             <div className="form-messages-wrap">
               {this.state.entityNew.entityName.errors ? (
                 <div className="entityNameErrors">
@@ -109,7 +128,7 @@ export default class EntityFormsy extends React.Component {
               ) : <div></div>}
             </div>
             <input name="presubmit-hidden" value="true" type="hidden" />
-            <button type="submit" className="btn btn-success" onClick={this.submitNewEntity()} disabled={this.state.canPreSubmit ? ' ' : 'disabled'}>Submit New Entity</button>
+            <button ref="preSubmitButton" type="submit" className="btn btn-success" onClick={this.preSubmitNewEntity()} disabled={this.state.canPreSubmit ? '' : 'disabled'}>Submit New Entity</button>
             <button type="skip" className={"btn btn-info " + (this.state.canSubmit ? '' : 'hidden')}>Skip this Step</button>
           </fieldset>
           {this.state.entityNew.preApproved ? (
