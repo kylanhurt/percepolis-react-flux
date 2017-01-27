@@ -89,7 +89,7 @@ export default class EntityFormsy extends React.Component {
 
   submitNewEntity(){
     console.log('in submitNewEntity fxn within EntityNewForm.jsx', 'this is:', this);
-    EntityService.create('email@email.com', 'sample entity')
+    //EntityService.create('email@email.com', 'sample entity')
   }
 
   render() {

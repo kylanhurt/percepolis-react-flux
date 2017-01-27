@@ -16,7 +16,6 @@ export default class EntityFormsy extends React.Component {
     this.enableSubmitButton = this.enableSubmitButton.bind(this);
     this.disableSubmitButton = this.disableSubmitButton.bind(this);       
     this.submitNewEntity = this.submitNewEntity.bind(this);    
-    this.preSubmitNewEntity = this.preSubmitNewEntity.bind(this); 
     this.state = {
      entityNew: {
         entityName: {
@@ -66,10 +65,6 @@ export default class EntityFormsy extends React.Component {
     this.state.canSubmit = false
   }    
 
-  submit(model) {
-    someDep.saveEmail(model.email);
-  }
-
  componentWillMount() {
        
   }
@@ -105,8 +100,9 @@ export default class EntityFormsy extends React.Component {
 
   }
 
-  preSubmitNewEntity(){
-    console.log('in submitNewEntity fxn within EntityNewForm.jsx', 'this is:', this);
+  preSubmitNewEntity(e){
+    console.log('in preSubmitNewEntity fxn within EntityNewForm.jsx this is:', this, 'e is:', e);
+    e.preventDefault();
     EntityService.create('email@email.com', 'sample entity')
   }
 
@@ -128,8 +124,8 @@ export default class EntityFormsy extends React.Component {
               ) : <div></div>}
             </div>
             <input name="presubmit-hidden" value="true" type="hidden" />
-            <button ref="preSubmitButton" type="submit" className="btn btn-success" onClick={this.preSubmitNewEntity()} disabled={this.state.canPreSubmit ? '' : 'disabled'}>Submit New Entity</button>
-            <button type="skip" className={"btn btn-info " + (this.state.canSubmit ? '' : 'hidden')}>Skip this Step</button>
+            <button className="btn btn-success" onClick={this.preSubmitNewEntity} disabled={this.state.canPreSubmit ? '' : 'disabled'}>Submit New Entity</button>
+            <button className={"btn btn-info " + (this.state.canSubmit ? '' : 'hidden')}>Skip this Step</button>
           </fieldset>
           {this.state.entityNew.preApproved ? (
           <div>

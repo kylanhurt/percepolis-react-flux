@@ -2,7 +2,7 @@ import request from 'reqwest';
 import when from 'when';
 import {NEW_ENTITY_URL} from '../constants/EntityNewConstants';
 import EntityActions from '../actions/EntityActions';
-import AuthService from './AuthService'
+import AuthService from './AuthService';
 
 class EntityService {
 
