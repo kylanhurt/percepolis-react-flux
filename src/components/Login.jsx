@@ -34,7 +34,7 @@ export default class Login extends React.Component {
           <label htmlFor="password">Password</label>
           <input type="password" valueLink={linkState(this, 'password')} className="form-control" id="password" ref="password" placeholder="Password" />
         </div>
-        <button type="submit" className="btn btn-default" onClick={this.login.bind(this)}>Submit</button>
+        <button className="btn btn-default" onClick={this.login.bind(this)}>Submit</button>
       </form>
     </div>
     );

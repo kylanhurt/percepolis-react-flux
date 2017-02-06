@@ -30,6 +30,15 @@ export default class HomeBanner extends React.Component {
     LoginStore.removeChangeListener(this.changeListener);
   }
 
+  loginUser(e) {
+    e.preventDefault();
+
+  }
+
+  registerUser(e) {
+	e.preventDefault();
+  }
+
   render() { 
     if (!this.state.userLoggedIn) {
     	return(
@@ -46,8 +55,8 @@ export default class HomeBanner extends React.Component {
 			                <label htmlFor="login-password">Password:</label>
 			                <input type="password" className="form-control" id="login-password" placeholder="*******"></input>
 			            </div>
-			            <button type="submit" className="btn btn-primary">Login</button>
-			            <button type="submit" className="btn btn-secondary">Register</button>
+			            <button className="btn btn-primary" onClick={this.loginUser.bind(this)}>Login</button>
+			            <button className="btn btn-secondary" onClick={this.registerUser.bind(this)}>Register</button>
 			            <input type="hidden" name="_token" value="{{_token}}"></input>
 			        </form>
 			    </div>

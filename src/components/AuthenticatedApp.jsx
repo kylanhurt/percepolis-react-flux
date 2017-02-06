@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import LoginStore from '../stores/LoginStore'
 import { Route, RouteHandler, Link } from 'react-router';
