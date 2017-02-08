@@ -50,7 +50,6 @@ export default class HomeBanner extends React.Component {
 
   _onChange() {
   	let currentLoginState = this._getLoginState();
-  	
   	this.setState(currentLoginState);
   }
 

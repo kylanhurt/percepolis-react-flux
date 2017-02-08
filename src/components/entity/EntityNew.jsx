@@ -6,8 +6,7 @@ import EntityNewForm from './EntityNewForm';
 
 export default class EntityNew extends React.Component { 
 	constructor( props ) {
-		console.log('inside EntityNew constructor');
-		super(props)
+				super(props)
 	    this.state = {
 	       entityNew: {},
            canSubmit: false,

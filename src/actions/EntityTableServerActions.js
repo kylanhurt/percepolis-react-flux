@@ -4,8 +4,7 @@ import { RECEIVE_ENTITIES } from '../constants/EntityTableConstants.js';
 
 export default {
   receiveEntities: function(response) {
-    console.log('EntityTableServerActions.receiveEntities executing');
-    AppDispatcher.dispatch({
+        AppDispatcher.dispatch({
       actionType: RECEIVE_ENTITIES,
       data: response
      });

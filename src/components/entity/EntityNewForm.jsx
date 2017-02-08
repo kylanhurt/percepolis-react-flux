@@ -28,8 +28,7 @@ export default class EntityNewForm extends React.Component {
           valid: false
        }
     }
-    console.log('in entityformsy, this is: ', this)
-  }
+      }
 
   submit(data) {
     alert(JSON.stringify(data, null, 4));
@@ -79,19 +78,13 @@ export default class EntityNewForm extends React.Component {
   }
 
   changeEntityName(event) {
-    console.log('event.target.value is:', event.target.value);
-    console.log('this is:', this);
-    console.log('this.state is:', this.state);
-
+            
     var currentValue = event.target.value;
-    console.log('_onChange this is: ', this, 'currentValue is:', currentValue);
-
+    
     if(currentValue !== '') {
-      console.log('currentValue conditional true')
-      this.setState({ canPreSubmit: true});
+            this.setState({ canPreSubmit: true});
     } else {
-      console.log('currentValue conditional false')
-      this.setState({ canPreSubmit: false });
+            this.setState({ canPreSubmit: false });
     }
 
   }
@@ -101,14 +94,12 @@ export default class EntityNewForm extends React.Component {
   }
 
   preSubmitNewEntity(e){
-    console.log('in preSubmitNewEntity fxn within EntityNewForm.jsx this is:', this, 'e is:', e);
-    e.preventDefault();
+        e.preventDefault();
     EntityService.create('email@email.com', 'sample entity')
   }
 
   render() {
-    console.log('in EntityFormsy')
-    return (
+        return (
       <div className="entity-new-form-wrapper" style={{clear: "both"}}>
         <h2>Entity Submission</h2>
         <p>To start the creation and submission of a new entity, please fill out the form below:</p>

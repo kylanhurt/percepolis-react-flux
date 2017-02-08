@@ -7,8 +7,7 @@ import AuthService from './AuthService';
 class EntityService {
 
   create(email, name) {
-    console.log('in EntityService.js, create');
-    return request({
+        return request({
       url: NEW_ENTITY_URL,
       method: 'POST',
       crossOrigin: true,

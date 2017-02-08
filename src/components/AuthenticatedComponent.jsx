@@ -30,8 +30,7 @@ export default (ComposedComponent) => {
     }
 
     _onChange() {
-      console.log('we are in AuthenticatedComponent._onChange()');
-      this.setState(this._getLoginState());
+            this.setState(this._getLoginState());
     }
 
     componentWillUnmount() {

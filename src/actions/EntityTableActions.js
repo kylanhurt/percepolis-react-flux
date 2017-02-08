@@ -4,7 +4,7 @@ import percepolisApi from '../utils/percepolisApi';
 
 export default {
   loadEntities: function(endpoint, criteria, count, order) {
-  	console.log('EntityTableActions.loadEntities executing');
+  	
   	var endpoint = endpoint ? endpoint : 'entity';
   	var criteria = criteria ? criteria : 'created_at';
   	var count = count ? count : 10;
@@ -14,7 +14,7 @@ export default {
   		count: count,
   		order: order
   	}
-  	console.log('within EntityTableActions and data is: ', data);
+  	
     AppDispatcher.dispatch({
       actionType: LOAD_ENTITIES,
       data: data
