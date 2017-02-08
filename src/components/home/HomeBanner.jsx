@@ -7,12 +7,10 @@ export default class HomeBanner extends React.Component {
 
 	constructor( props ) {
 		super(props)		
-		console.log('inside HomeBanner constructor');
 		this.state = this._getLoginState();			
 	}
 
   _getLoginState() {
-  	console.log('inside _getLoginState');
     return {
       userLoggedIn: LoginStore.isLoggedIn()
     };
@@ -24,8 +22,6 @@ export default class HomeBanner extends React.Component {
   }
 
   _onInputChange(name, e) {
-    //this.setState(this._getLoginState());
-    console.log('in _onInputChange, name is:', name, ' e is: ', e, ' this is: ', this);
     let change = {};
     change[name] = e.target.value;
     this.setState(change);
@@ -54,7 +50,7 @@ export default class HomeBanner extends React.Component {
 
   _onChange() {
   	let currentLoginState = this._getLoginState();
-  	console.log('in HomeBanner._onChange, currentLoginState: ', currentLoginState);
+  	
   	this.setState(currentLoginState);
   }
 

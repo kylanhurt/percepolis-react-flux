@@ -4,12 +4,12 @@ import percepolisApi from '../utils/percepolisApi';
 
 export default {
   submitNewEntity: function(name) {
-  	console.log('EntityTableActions.loadEntities executing');
+  	
   	var endpoint = NEW_ENTITY_URL ? NEW_ENTITY_URL : 'entity';
   	var data = {
   		name: name,
   	}
-  	console.log('within EntityActions and data is: ', data);
+  	
     AppDispatcher.dispatch({
       actionType: SUBMIT_NEW_ENTITY,
       data: data

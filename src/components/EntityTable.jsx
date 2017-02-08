@@ -5,42 +5,35 @@ import EntityTableActions from '../actions/EntityTableActions'
 export default class EntityTable extends React.Component {
 
 	constructor( props ) {
-		console.log('inside EntityTable constructor');
 		super(props)
-	   this.state = {
+	  this.state = {
 	       entities: [],
 	       start: "started"
-	   };
+	  };
 		this._onChange = this._onChange.bind(this);  	     
 	}
 
    componentWillReceiveProps(props) {
-     console.log('ET.componentWillReceiveProps triggered');
-     //this.setState({entities: EntityTableActions.receiveEntities()});
+
    }
 
-   componentWillMount() {
-     console.log('ET.componentWillMount triggered');
-     EntityTableActions.loadEntities();              
-    }
+  componentWillMount() {
+      EntityTableActions.loadEntities();              
+  }
 
 
 	componentDidMount(){
-	   console.log('ET.componentDidMount triggered');
-	   EntityTableStore.addChangeListener(this._onChange);
+ 	  EntityTableStore.addChangeListener(this._onChange);
 	}
 
 	componentWillUnmount() {
-		console.log('ET.componentWillUnmount triggered');
 		EntityTableStore.removeChangeListener(this._onChange);
 	}
 
 	_onChange() {
-     console.log('ET._onChange triggered, this.state is:', this.state);
-     var test = EntityTableStore.getEntities();
-     console.log('test is:', test);
-     this.state.entities = EntityTableStore.getEntities();
-     this.setState({entities: this.state.entities});
+    var test = EntityTableStore.getEntities();
+    this.state.entities = EntityTableStore.getEntities();
+    this.setState({entities: this.state.entities});
 	}
 
   render() { 
