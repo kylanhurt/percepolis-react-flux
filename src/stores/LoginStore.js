@@ -15,6 +15,7 @@ class LoginStore extends BaseStore {
   _registerToActions(action) {
     switch(action.actionType) {
       case LOGIN_USER:
+        console.log('inside loginstore._registerToAction => LOGIN_USER, this is: ', this);
         this._jwt = action.jwt;
         this._user = jwt_decode(this._jwt);
         this.emitChange();
@@ -37,6 +38,7 @@ class LoginStore extends BaseStore {
   }
 
   isLoggedIn() {
+    console.log('inside loginStore.isLoggedIn, this is: ', this);
     return !!this._user;
   }
 }
