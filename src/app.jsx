@@ -8,7 +8,7 @@ import Home from './components/Home';
 import EntityNew from './components/entity/EntityNew';
 import RouterContainer from './services/RouterContainer';
 import LoginActions from './actions/LoginActions';
-import EntityFormsy from './components/entity/EntityFormsy';
+import EntityNewForm from './components/entity/EntityNewForm';
 
 let jwt = localStorage.getItem('jwt');
 if (jwt) {
@@ -21,7 +21,7 @@ ReactDOM.render((
 			    	<IndexRoute component={Home} />
 				    <Route path="/login" component={Login} />
 				    <Route path="/signup" component={Signup} />
-				    <Route path="/entity/new" component={EntityFormsy} />
+				    <Route path="/entity/new" component={EntityNewForm} />
 			    </Route>
 		    
 			</Router>
