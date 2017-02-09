@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import FRC from 'formsy-react-components';
 import EntityService from '../../services/EntityService';
+import loginStore from '../../stores/LoginStore';
 
 
 //const { Form, Input, File, RadioGroup, Checkbox, CheckboxGroup, Select } = FRC;
@@ -17,18 +18,14 @@ export default class EntityNewForm extends React.Component {
     this.disableSubmitButton = this.disableSubmitButton.bind(this);       
     this.submitNewEntity = this.submitNewEntity.bind(this);    
     this.state = {
-     entityNew: {
-        entityName: {
-          errors: false
-        }
-       },
-       canSubmit: false,
-       canPreSubmit: false,
-       preSubmitData: {
-          valid: false
-       }
+     entityNewErrors: false,
+     canSubmit: false,
+     canPreSubmit: false,
+     entityName: '',
+     entityNameErrors: false,
+     entityNewPreApproved: false
     }
-      }
+  }
 
   submit(data) {
     alert(JSON.stringify(data, null, 4));
@@ -82,7 +79,7 @@ export default class EntityNewForm extends React.Component {
     var currentValue = event.target.value;
     
     if(currentValue !== '') {
-            this.setState({ canPreSubmit: true});
+            this.setState({ entityName: currentValue, canPreSubmit: true});
     } else {
             this.setState({ canPreSubmit: false });
     }
@@ -94,8 +91,9 @@ export default class EntityNewForm extends React.Component {
   }
 
   preSubmitNewEntity(e){
-        e.preventDefault();
-    EntityService.create('email@email.com', 'sample entity')
+    e.preventDefault();
+    console.log('in EntityNewForm.preSubmitNewEntity, this is: ', this, ' e is: ', e);
+    EntityService.create(loginStore._user.email, this.state.entityName);
   }
 
   render() {
@@ -108,17 +106,17 @@ export default class EntityNewForm extends React.Component {
             <label htmlFor="entityName">Entity Name:</label>
             <input label="Entity Name:" className="form-control" onChange={this.changeEntityName.bind(this)} name="entityName" type="text" placeholder="ex. McDonalds" required/>
             <div className="form-messages-wrap">
-              {this.state.entityNew.entityName.errors ? (
+              {this.state.entityNameErrors ? (
                 <div className="entityNameErrors">
                   <label class="text-danger">>This field is required.</label>
                 </div>
               ) : <div></div>}
             </div>
             <input name="presubmit-hidden" value="true" type="hidden" />
-            <button className="btn btn-success" onClick={this.preSubmitNewEntity} disabled={this.state.canPreSubmit ? '' : 'disabled'}>Submit New Entity</button>
+            <button className="btn btn-success" onClick={this.preSubmitNewEntity.bind(this)} disabled={this.state.canPreSubmit ? '' : 'disabled'}>Submit New Entity</button>
             <button className={"btn btn-info " + (this.state.canSubmit ? '' : 'hidden')}>Skip this Step</button>
           </fieldset>
-          {this.state.entityNew.preApproved ? (
+          {this.state.entityNewPreApproved ? (
           <div>
             <div className="subsequent-entity-info-submission">
                 <h2>Additional Info:</h2>

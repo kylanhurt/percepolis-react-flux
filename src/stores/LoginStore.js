@@ -15,7 +15,7 @@ class LoginStore extends BaseStore {
   _registerToActions(action) {
     switch(action.actionType) {
       case LOGIN_USER:
-                this._jwt = action.jwt;
+        this._jwt = action.jwt;
         this._user = jwt_decode(this._jwt);
         this.emitChange();
         break;

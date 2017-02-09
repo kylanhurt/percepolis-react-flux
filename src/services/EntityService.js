@@ -3,11 +3,12 @@ import when from 'when';
 import {NEW_ENTITY_URL} from '../constants/EntityNewConstants';
 import EntityActions from '../actions/EntityActions';
 import AuthService from './AuthService';
+import LoginStore from '../stores/LoginStore';
 
 class EntityService {
 
   create(email, name) {
-        return request({
+      return request({
       url: NEW_ENTITY_URL,
       method: 'POST',
       crossOrigin: true,
@@ -15,7 +16,8 @@ class EntityService {
       type: 'json',
        data: JSON.stringify({  
         email: email, 
-        name: name
+        name: name,
+        token: LoginStore._jwt
       })
     });
   }
