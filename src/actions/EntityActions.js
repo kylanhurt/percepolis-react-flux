@@ -3,10 +3,11 @@ import { SUBMIT_NEW_ENTITY, NEW_ENTITY_URL } from '../constants/EntityNewConstan
 import percepolisApi from '../utils/percepolisApi';
 
 export default {
-  submitNewEntity: function(name) {
+  submitNewEntity: function(name, email) {
   	var endpoint = NEW_ENTITY_URL ? NEW_ENTITY_URL : 'entity';
   	var data = {
   		name: name,
+      email: email
   	}
   	
     AppDispatcher.dispatch({

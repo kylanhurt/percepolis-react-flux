@@ -6,7 +6,7 @@ import {Router, browserHistory} from 'react-router'
 export default {
 
   loginUser: (jwt) => {
-        var savedJwt = localStorage.getItem('jwt');  
+    var savedJwt = localStorage.getItem('jwt');  
     AppDispatcher.dispatch({
       actionType: LOGIN_USER,
       jwt: jwt

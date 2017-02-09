@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import FRC from 'formsy-react-components';
 import EntityService from '../../services/EntityService';
 import loginStore from '../../stores/LoginStore';
+import EntityNewStore from '../../stores/EntityNewStore';
 
 
 //const { Form, Input, File, RadioGroup, Checkbox, CheckboxGroup, Select } = FRC;
@@ -67,33 +68,37 @@ export default class EntityNewForm extends React.Component {
 
 
   componentDidMount(){
- 
+    this.changeListener = this._onChange.bind(this);
+    EntityNewStore.addChangeListener(this.changeListener);
   }
 
   componentWillUnmount() {
 
   }
 
-  changeEntityName(event) {
-            
-    var currentValue = event.target.value;
-    
-    if(currentValue !== '') {
-            this.setState({ entityName: currentValue, canPreSubmit: true});
-    } else {
-            this.setState({ canPreSubmit: false });
-    }
-
+  _getEntityNewPreApprovedState() {
+    return {
+      entityNewPreApproved: EntityNewStore.isEntityNewSuccess()
+    };
   }
 
-  _onChange() {
-
+  changeEntityName(event) {
+    var currentValue = event.target.value;
+    if(currentValue !== '') {
+      this.setState({ entityName: currentValue, canPreSubmit: true});
+    } else {
+      this.setState({ canPreSubmit: false });
+    }
   }
 
   preSubmitNewEntity(e){
     e.preventDefault();
-    console.log('in EntityNewForm.preSubmitNewEntity, this is: ', this, ' e is: ', e);
     EntityService.create(loginStore._user.email, this.state.entityName);
+  }
+
+  _onChange() {
+    let currentPreApprovalState = this._getEntityNewPreApprovedState();
+    this.setState(currentPreApprovalState);
   }
 
   render() {

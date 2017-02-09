@@ -1,7 +1,8 @@
 import React from 'react';
-import LoginStore from '../../stores/LoginStore'
-import AuthService from '../../services/AuthService'
+import LoginStore from '../../stores/LoginStore';
+import AuthService from '../../services/AuthService';
 import {Link} from 'react-router';
+import EntityNewStore from '../../stores/EntityNewStore';
 
 export default class HomeBanner extends React.Component {
 
